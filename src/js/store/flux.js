@@ -37,13 +37,6 @@ const getState = ({ getStore, setStore }) => {
 						// 'Content-Type': 'application/x-www-form-urlencoded',
 					}
 				}).catch(e => console.log(e, " THE ERROR"));
-				// fetch("https://assets.breatheco.de/apis/fake/contact/", {
-				// 	method: "POST", // or 'POST'
-				// 	body: JSON.stringify(body), // data can be a `string` or  an {object} which comes from somewhere further above in our application
-				// 	headers: {
-				// 		"Content-Type": "application/json"
-				// 	}
-				// });
 			}
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
