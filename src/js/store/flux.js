@@ -27,7 +27,10 @@ const getState = ({ getStore, setStore }) => {
 					address: contactInfo.address,
 					phone: contactInfo.phone
 				};
-				// fetch('https://assets.breatheco.de/apis/fake/contact/');
+				// fetch("https://assets.breatheco.de/apis/fake/contact/", { not working yet...
+				// 	method: "POST",
+				// 	body: JSON.parse(body)
+				// });
 			}
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
