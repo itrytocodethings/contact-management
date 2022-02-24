@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
+// import { ProgressPlugin } from "webpack";
 
-export const AddContact = () => {
+export const AddContact = props => {
 	const [contactInfo, setContactInfo] = useState({
 		fullName: "",
 		email: "",
@@ -59,7 +61,11 @@ export const AddContact = () => {
 					<button
 						type="button"
 						className="btn btn-primary form-control"
-						onClick={() => actions.addContact(contactInfo)}>
+						onClick={() => {
+							actions.addContact(contactInfo);
+							actions.getContacts();
+							props.history.push("/");
+						}}>
 						save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
@@ -69,4 +75,8 @@ export const AddContact = () => {
 			</div>
 		</div>
 	);
+};
+
+AddContact.propTypes = {
+	history: PropTypes.object
 };

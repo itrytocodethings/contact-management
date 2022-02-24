@@ -7,6 +7,7 @@ import { Modal } from "../component/Modal";
 
 export const Contacts = () => {
 	const { store, actions } = useContext(Context);
+	console.log(store.contacts);
 	const [state, setState] = useState({
 		showModal: false
 	});
