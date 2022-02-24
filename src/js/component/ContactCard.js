@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
 
 export const ContactCard = props => {
-	console.log(props.contact);
 	const [state, setState] = useState({
 		//initialize state here
 	});

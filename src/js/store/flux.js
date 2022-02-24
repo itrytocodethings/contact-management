@@ -20,16 +20,29 @@ const getState = ({ getStore, setStore }) => {
 			},
 			addContact: contactInfo => {
 				let store = getStore();
+				//prettier-ignore
 				let body = {
-					full_name: contactInfo.fullName,
-					email: contactInfo.email,
-					agenda_slug: store.agenda,
-					address: contactInfo.address,
-					phone: contactInfo.phone
+					'full_name': contactInfo.fullName,
+					'email': contactInfo.email,
+					'agenda_slug': store.agenda,
+					'address': contactInfo.address,
+					'phone': contactInfo.phone
 				};
-				// fetch("https://assets.breatheco.de/apis/fake/contact/", { not working yet...
-				// 	method: "POST",
-				// 	body: JSON.parse(body)
+				console.log(JSON.stringify(body));
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+					method: "POST",
+					body: JSON.stringify(body),
+					headers: {
+						"Content-Type": "application/json"
+						// 'Content-Type': 'application/x-www-form-urlencoded',
+					}
+				}).catch(e => console.log(e, " THE ERROR"));
+				// fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				// 	method: "POST", // or 'POST'
+				// 	body: JSON.stringify(body), // data can be a `string` or  an {object} which comes from somewhere further above in our application
+				// 	headers: {
+				// 		"Content-Type": "application/json"
+				// 	}
 				// });
 			}
 			//(Arrow) Functions that update the Store
