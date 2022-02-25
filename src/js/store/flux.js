@@ -22,11 +22,11 @@ const getState = ({ getStore, setStore }) => {
 				let store = getStore();
 				//prettier-ignore
 				let body = {
-					'full_name': contactInfo.fullName,
-					'email': contactInfo.email,
-					'agenda_slug': store.agenda,
-					'address': contactInfo.address,
-					'phone': contactInfo.phone
+					full_name: contactInfo.fullName,
+					email: contactInfo.email,
+					agenda_slug: store.agenda,
+					address: contactInfo.address,
+					phone: contactInfo.phone
 				};
 				console.log(JSON.stringify(body));
 				fetch("https://assets.breatheco.de/apis/fake/contact/", {

@@ -12,7 +12,7 @@ export const Contacts = () => {
 		contactToDelete: null
 	});
 
-	useEffect(() => actions.getContacts());
+	useEffect(() => actions.getContacts()); //correct?
 
 	return (
 		<div className="container">
