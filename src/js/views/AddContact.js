@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 // import { ProgressPlugin } from "webpack";
 
 export const AddContact = props => {
+	// console.log(props);
 	const [contactInfo, setContactInfo] = useState({
 		fullName: "",
 		email: "",
@@ -63,8 +64,7 @@ export const AddContact = props => {
 						className="btn btn-primary form-control"
 						onClick={() => {
 							actions.addContact(contactInfo);
-							actions.getContacts();
-							props.history.push("/");
+							props.history.goBack();
 						}}>
 						save
 					</button>

@@ -37,6 +37,11 @@ const getState = ({ getStore, setStore }) => {
 						// 'Content-Type': 'application/x-www-form-urlencoded',
 					}
 				}).catch(e => console.log(e, " THE ERROR"));
+			},
+			deleteContact: contact => {
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${contact}`, {
+					method: "DELETE"
+				});
 			}
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()

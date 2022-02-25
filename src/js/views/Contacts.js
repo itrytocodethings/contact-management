@@ -7,10 +7,12 @@ import { Modal } from "../component/Modal";
 
 export const Contacts = () => {
 	const { store, actions } = useContext(Context);
-	console.log(store.contacts);
 	const [state, setState] = useState({
-		showModal: false
+		showModal: false,
+		contactToDelete: null
 	});
+
+	useEffect(() => actions.getContacts());
 
 	return (
 		<div className="container">
@@ -25,13 +27,34 @@ export const Contacts = () => {
 						{/* <ContactCard onDelete={() => setState({ showModal: true })} /> */}
 						{store.contacts.map((contact, i) => {
 							return (
-								<ContactCard key={i} contact={contact} onDelete={() => setState({ showModal: true })} />
+								<ContactCard
+									key={i}
+									contact={contact}
+									onDelete={() => {
+										setState({
+											showModal: true,
+											contactToDelete: contact.id
+										});
+									}}
+								/>
 							);
 						})}
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} />
+			<Modal
+				show={state.showModal}
+				onClose={() =>
+					setState({
+						showModal: false,
+						contactToDelete: null
+					})
+				}
+				deleteContact={() => {
+					actions.deleteContact(state.contactToDelete);
+					setState({ showModal: false, contactToDelete: null });
+				}}
+			/>
 		</div>
 	);
 };
