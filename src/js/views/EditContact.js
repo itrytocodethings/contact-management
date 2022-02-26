@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
-// import { ProgressPlugin } from "webpack";
 
 export const EditContact = props => {
 	let currentContact = props.location.state.contact;
@@ -12,7 +11,6 @@ export const EditContact = props => {
 		phone: currentContact.phone,
 		address: currentContact.address
 	});
-	console.log(contactInfo);
 	const { store, actions } = useContext(Context);
 	return (
 		<div className="container">
