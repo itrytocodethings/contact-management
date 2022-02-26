@@ -1,4 +1,4 @@
-const getState = ({ getStore, setStore }) => {
+const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
 			agenda: "WayneB",
@@ -20,7 +20,8 @@ const getState = ({ getStore, setStore }) => {
 			},
 			addContact: contactInfo => {
 				let store = getStore();
-				//prettier-ignore
+				let actions = getActions();
+
 				let body = {
 					full_name: contactInfo.fullName,
 					email: contactInfo.email,
@@ -28,7 +29,6 @@ const getState = ({ getStore, setStore }) => {
 					address: contactInfo.address,
 					phone: contactInfo.phone
 				};
-				console.log(JSON.stringify(body));
 				fetch("https://assets.breatheco.de/apis/fake/contact/", {
 					method: "POST",
 					body: JSON.stringify(body),
@@ -36,12 +36,43 @@ const getState = ({ getStore, setStore }) => {
 						"Content-Type": "application/json"
 						// 'Content-Type': 'application/x-www-form-urlencoded',
 					}
-				}).catch(e => console.log(e, " THE ERROR"));
+				})
+					.then(response => {
+						if (response.ok) actions.getContacts();
+					})
+					.catch(e => console.log(e, " THE ERROR"));
 			},
 			deleteContact: contact => {
+				let actions = getActions();
 				fetch(`https://assets.breatheco.de/apis/fake/contact/${contact}`, {
 					method: "DELETE"
+				}).then(response => {
+					if (response.ok) actions.getContacts();
 				});
+			},
+			editContact: (contactInfo, id) => {
+				let store = getStore();
+				let actions = getActions();
+
+				let body = {
+					full_name: contactInfo.fullName,
+					email: contactInfo.email,
+					agenda_slug: store.agenda,
+					address: contactInfo.address,
+					phone: contactInfo.phone
+				};
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, {
+					method: "PUT",
+					body: JSON.stringify(body),
+					headers: {
+						"Content-Type": "application/json"
+						// 'Content-Type': 'application/x-www-form-urlencoded',
+					}
+				})
+					.then(response => {
+						if (response.ok) actions.getContacts();
+					})
+					.catch(e => console.log(e, " THE ERROR"));
 			}
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
